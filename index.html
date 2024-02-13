@@ -5,13 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auto-Tune</title>
     <script src="index.js" defer></script>
+    <link href="index.css" rel="stylesheet" />
 </head>
 <body>
-    <h1>Web Audio API: AudioBuffer</h1>
-    <div><button>Load 40</button></div>
+    <h1>Car Sound Generator</h1>
+
+    <section class="visualiser">
+        <!-- The canvas where ThreeJs renders the WebGL -->
+        <canvas id="scene"></canvas>
+
+        <script src="js/vendors/three.min.js"></script>
+        <script src="main.js"></script>
+    </section>
+
+    <section class="sounds">
+        sounds
+        <section>
+            <input type="checkbox" id="accel-pdl-posn-on">
+            accelPdlPosn
+            <label>Klangdatei: <input type="file" id="accel-pdl-posn-sound" name="accel-pdl-posn-sound" accept="audio/*"></label>
+            <label>Intensität: <input type="range" id="accel-pdl-posn-intensity" min="0" max="2" value="1" step="0.01"/></label>
+        </section>
+        <section>
+            <input type="checkbox" id="trq-ld-on">
+            trqLd
+            <label>Klangdatei: <input type="file" id="trq-ld-sound" name="trq-ld-sound" accept="audio/*"></label>
+            <label>Intensität: <input type="range" id="trq-ld-intensity" min="0" max="2" value="1" step="0.01"/></label>
+        </section>
+        <section>
+            <input type="checkbox" id="spd-on">
+            spd 1
+            <label>Klangdatei: <input type="file" id="spd-sound" name="spd-sound" accept="audio/*"></label>
+            <label>Intensität: <input type="range" id="spd-intensity" min="0" max="2" value="1" step="0.01"/></label>
+        </section>
+        <section>
+            <input type="checkbox" id="stacker-on">
+           stacker
+        </section>
+        
+    </section>
+
+    <section class="controllers">
+        controllers
+        <!--
+        <section class="play">
+            <label>Play<input type="checkbox" id="play"></label>
+        </section>
+        -->
+        <section class="accel-pdl-posn">
+            <label>
+                accelPdlPosn: 0
+                <input type="range" id="accel-pdl-posn" min="0" max="100" value="0" step="0.01"/>
+                100
+            </label>
+        </section>
+        <section class="trq-ld">
+            <label>
+                trqLd: 0
+                <input type="range" id="trq-ld" min="0" max="100" value="0" step="0.01"/>
+                100
+            </label>
+        </section>
+        <section class="speed">
+            <label>Speed: 0 <input type="range" id="speed" min="0" max="160" value="0" step="0.01"/> 160 km / h</label>
+        </section>
+
+    </section>
+
+    <section class="simulators">
+        <section class="autodaten">
+            Autodaten
+            <label>Datei: <input type="file" id="car-data" name="car-data" accept="application/json"></label>
+            <label>Play<input type="checkbox" id="autodaten-play"></label>
+        </section>
+    </section>
+    <!--
     <div><label>
         detune
         <input type="range" id="detune" name="detune" min="-1000" max="1000" />
-    </div></label>
+    </label></div>
+-->
+    
+    
+    <!-- <label>Playback Rate<input type="range" id="playback-rate" name="playback-rate" min="0.25" max="4" step="0.05" value="1"></label> -->
+    <!-- <button id="start">start</button> -->
 </body>
 </html>

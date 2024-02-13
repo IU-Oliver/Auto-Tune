@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto-Tune</title>
+    <script src="csv2js.js" defer></script>
+</head>
+<body>
+    <input type="file" id="csv" name="csv" accept="text/csv"/>
+
+    <h1>Web Audio API: AudioBuffer</h1>
+    
+    <div><button>Load 40</button></div>
+    <div><label>
+        detune
+        <input type="range" id="detune" name="detune" min="-1000" max="1000" />
+    </div></label>
+</body>
+</html>
