@@ -1,3 +1,12 @@
 body > section {
     border: solid 1px;
 }
+
+main, .category {
+    display: flex;
+}
+
+.sound {
+    flex: auto;
+}
+
