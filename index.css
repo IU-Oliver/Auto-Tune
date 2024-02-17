@@ -1,4 +1,4 @@
-body > section {
+body > * {
     border: solid 1px;
 }
 
@@ -6,7 +6,7 @@ main, .category {
     display: flex;
 }
 
-.sound {
+.sound, audio-buffer-source-node {
     flex: auto;
 }
 
