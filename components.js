@@ -4,16 +4,7 @@ class BeAudioContext extends HTMLElement {
 
     be;
 
-    constructor() {
-        console.log("BeAudioContext()");
-
-        // Always call super first in constructor
-        super();
-    }
-
     connectedCallback() {
-        console.log("BeAudioContext.connectedCallback()");
-
         if (this.be === undefined) this.be = new AudioContext();
     }
 
@@ -37,17 +28,30 @@ class BeAudioBufferSourceNode extends HTMLElement {
     cash = {};
     audioBuffer;
 
+    get active() {
+        return this.be === undefined? this.cash.active : this.be[2].gain.value === 1? true : false;
+    }
+    set active(value) {
+        this.cash.active = value;
+        if (this.be === undefined) return;
+        this.be[1].gain.value = this.cash.active = value? 1 : 0;
+    }
+
     get volume() {
-        return this.be === undefined? 1 : this.be[1].gain.value;
+        return this.be === undefined? this.cash.volume : this.be[2].volume.value;
     }
     set volume(value) {
+        this.cash.volume = value;
         if (this.be === undefined) return;
-        this.be[1].gain.value = value;
+        this.be[2].gain.value = value;
     }
+    
     get detune() {
-        return this.be[1].gain.value;
+        return this.be === undefined? this.cash.detune : this.be[0].detune.value;
     }
     set detune(value) {
+        this.cash.detune = value;
+        if (this.be === undefined) return;
         this.be[0].detune.value = value;
     }
 
@@ -58,17 +62,15 @@ class BeAudioBufferSourceNode extends HTMLElement {
         return this.cash.audioContext;
     }
 
-
     constructor() {
-        console.log("BeAudioBufferSourceNode()");
-
-        // Always call super first in constructor
         super();
+
+        this.cash.gain = 1;
+        this.cash.active = false;
+        this.cash.detune = 1
     }
 
     connectedCallback() {
-        console.log("BeAudioBufferSourceNode.connectedCallback()");
-
         this.setup();
     }
 
@@ -114,24 +116,18 @@ class BeAudioBufferSourceNode extends HTMLElement {
     startSample(time) {
         const audioBufferSourceNode = new AudioBufferSourceNode(this.audioContext, { buffer: this.audioBuffer });
         audioBufferSourceNode.loop = true;
+        audioBufferSourceNode.detune.value = this.detune;
+
         const gainNode1 = new GainNode(this.audioContext);
+        gainNode1.gain.value = this.cash.active? 1 : 0;
+
         const gainNode2 = new GainNode(this.audioContext);
+        gainNode2.gain.value = this.cash.gain;
+
         audioBufferSourceNode.connect(gainNode1).connect(gainNode2).connect(this.audioContext.destination);
         audioBufferSourceNode.start(time);
         return [audioBufferSourceNode, gainNode1, gainNode2];
     }
-    
-    
-    /*
-        async function setupSample(soundFileInput) {
-            return await audioCtx.decodeAudioData(await soundFileInput.files[0].arrayBuffer());
-        }
-    
-    async function setupFile(filePath, name) {
-        sample = await getFile(audioCtx, filePath);
-        globalThis[name] = sample;
-    };
-    */
 
 }
 

@@ -7,6 +7,7 @@
     <title>Auto-Tune</title>
     components
     <script src="components.js"></script>
+    <script src="extensions.js" defer></script>
     <script src="index.js" defer></script>
     <link href="index.css" rel="stylesheet" />
 </head>
@@ -15,82 +16,80 @@
     <header>Car Sound Generator</header>
 
     <main>
-        <audio-context class="generators">
+        <audio-context data-query=":scope > * :closest() audio-buffer-source-node :closest(section)" class="generators">
             Generators
             <section class="category">
                 <audio-buffer-source-node src="Audio/Bass.mp3">
-                    <!--
-                    <input data-path="this.parentNode" name="" type="checkbox">
-                    -->
-                    <input type="checkbox">
+                    <input data-path="this.parentNode" name="active" type="checkbox">
                     <input data-path="this.parentNode" name="volume" type="range" min="0" max="2" value="1" step="0.01">
+                    <!-- <input data-path="this.parentNode" name="detune" type="range" min="-500" max="500" value="1" step="0.01"> -->
                 </audio-buffer-source-node>
                 <audio-buffer-source-node src="Audio/Beat.mp3">
-                    <input type="checkbox">
+                    <input data-path="this.parentNode" name="active" type="checkbox">
                     <input data-path="this.parentNode" name="volume" type="range" min="0" max="2" value="1" step="0.01">
                 </audio-buffer-source-node>
                 <audio-buffer-source-node src="Audio/Refrain1.mp3">
-                    <input type="checkbox">
+                    <input data-path="this.parentNode" name="active" type="checkbox">
                     <input data-path="this.parentNode" name="volume" type="range" min="0" max="2" value="1" step="0.01">
                 </audio-buffer-source-node>
             </section>
 
             <section class="category">
                 <audio-buffer-source-node src="Audio/Bass.mp3">
-                    <input type="checkbox">
+                    <input data-path="this.parentNode" name="active" type="checkbox">
                     <input data-path="this.parentNode" name="volume" type="range" min="0" max="2" value="1" step="0.01">
                 </audio-buffer-source-node>
                 <audio-buffer-source-node src="Audio/Beat.mp3">
-                    <input type="checkbox">
+                    <input data-path="this.parentNode" name="active" type="checkbox">
                     <input data-path="this.parentNode" name="volume" type="range" min="0" max="2" value="1" step="0.01">
                 </audio-buffer-source-node>
                 <audio-buffer-source-node src="Audio/Refrain1.mp3">
-                    <input type="checkbox">
+                    <input data-path="this.parentNode" name="active" type="checkbox">
                     <input data-path="this.parentNode" name="volume" type="range" min="0" max="2" value="1" step="0.01">
                 </audio-buffer-source-node>
             </section>
 
             <section class="category">
                 <audio-buffer-source-node src="Audio/Bass.mp3">
-                    <input type="checkbox">
+                    <input data-path="this.parentNode" name="active" type="checkbox">
                     <input data-path="this.parentNode" name="volume" type="range" min="0" max="2" value="1" step="0.01">
                 </audio-buffer-source-node>
                 <audio-buffer-source-node src="Audio/Beat.mp3">
-                    <input type="checkbox">
+                    <input data-path="this.parentNode" name="active" type="checkbox">
                     <input data-path="this.parentNode" name="volume" type="range" min="0" max="2" value="1" step="0.01">
                 </audio-buffer-source-node>
                 <audio-buffer-source-node src="Audio/Refrain1.mp3">
-                    <input type="checkbox">
+                    <input data-path="this.parentNode" name="active" type="checkbox">
                     <input data-path="this.parentNode" name="volume" type="range" min="0" max="2" value="1" step="0.01">
                 </audio-buffer-source-node>
             </section>
 
             <section class="category">
                 <audio-buffer-source-node src="Audio/Bass.mp3">
-                    <input type="checkbox">
+                    <input data-path="this.parentNode" name="active" type="checkbox">
                     <input data-path="this.parentNode" name="volume" type="range" min="0" max="2" value="1" step="0.01">
                 </audio-buffer-source-node>
                 <audio-buffer-source-node src="Audio/Beat.mp3">
-                    <input type="checkbox">
+                    <input data-path="this.parentNode" name="active" type="checkbox">
                     <input data-path="this.parentNode" name="volume" type="range" min="0" max="2" value="1" step="0.01">
                 </audio-buffer-source-node>
                 <audio-buffer-source-node src="Audio/Refrain1.mp3">
-                    <input type="checkbox">
+                    <input data-path="this.parentNode" name="active" type="checkbox">
                     <input data-path="this.parentNode" name="volume" type="range" min="0" max="2" value="1" step="0.01">
                 </audio-buffer-source-node>
             </section>
 
             <section class="category">
                 <audio-buffer-source-node src="Audio/Bass.mp3">
-                    <input type="checkbox">
+                    <input data-path="this.parentNode" name="active" type="checkbox">
                     <input data-path="this.parentNode" name="volume" type="range" min="0" max="2" value="1" step="0.01">
                 </audio-buffer-source-node>
                 <audio-buffer-source-node src="Audio/Beat.mp3">
-                    <input type="checkbox">
+                    <input data-path="this.parentNode" name="active" type="checkbox">
                     <input data-path="this.parentNode" name="volume" type="range" min="0" max="2" value="1" step="0.01">
                 </audio-buffer-source-node>
                 <audio-buffer-source-node src="Audio/Refrain1.mp3">
-                    <input type="checkbox">
+                    <input data-path="this.parentNode" name="active" type="checkbox">
                     <input data-path="this.parentNode" name="volume" type="range" min="0" max="2" value="1" step="0.01">
                 </audio-buffer-source-node>
             </section>
@@ -103,13 +102,41 @@
                 <!--<label>Play / Test<input type="checkbox" id="play"></label>-->
                 <button id="play-test">Play / Test</button>
             </section>
-            <section class="simulator">
-                <label>Start Simulation<input type="checkbox" id="autodaten-play"></label>
-            </section>
+            
             <section class="stop">
                 <!-- <label>Stop / Reset<input type="checkbox" id="stop"></label> -->
                 <button id="stop-reset">Stop / Reset</button>
             </section>
+
+            <details>
+                <summary>Inputs</summary>
+                <section class="accel-pdl-posn">
+                    <label>
+                        accelPdlPosn: 0
+                        <input type="range" id="accel-pdl-posn" min="0" max="100" value="0" step="0.01">
+                        100
+                    </label>
+                </section>
+                <section class="trq-ld">
+                    <label>
+                        trqLd: 0
+                        <input type="range" id="trq-ld" min="0" max="100" value="0" step="0.01">
+                        100
+                    </label>
+                </section>
+                <section class="speed">
+                    <label>
+                        Speed: 0
+                        <input type="range" id="speed" min="0" max="160" value="0" step="0.01">
+                        160 km / h
+                    </label>
+                </section>
+              </details>
+            
+              <section class="simulator">
+                <button id="autodaten-play">Start Simulation</button>
+            </section>
+
         </section>
     
     </main>

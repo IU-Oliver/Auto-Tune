@@ -1,38 +1,78 @@
-for (const node of document.querySelectorAll("input[data-path]")) {
-    const entries = node.dataset.path.split('.');
-    if (entries[0] === "this") {
-        const obj = node[entries[1]];
-        node.value = obj[node.name];
+const accelPdlPosnInput = document.getElementById("accel-pdl-posn");
+const trqLdInput = document.getElementById("trq-ld");
+const speedInput = document.getElementById("speed");
+const speedTargets = document.querySelectorAll("audio-buffer-source-node");
 
-        node.addEventListener("input", handleEvent.bind(obj));
-    } else {
-        console.log("not this");
+speedInput.addEventListener("input",
+    () => {
+        //console.log("input");
+
+        const speed = speedInput.value;
+        const detune = (speed - 75) * 10;
+
+        for (const target of speedTargets) {
+            target.be[0].detune.value = detune;
+        }
+
+        // für den Tunnel
+        globalThis.speed = speed / 500;
+    },
+    false
+);
+speedInput.addEventListener("change",
+    () => {
+        console.log("change");
+
+        /*
+        const speed = speedInput.value;
+
+        if (globalThis.spdNodes) {
+            spdNodes[0].detune.value = (speed - 75) * 10;
+        }
+        stackerSpeedChanged(speed);
+
+        globalThis.speed = speed / 500;
+        */
+    },
+    false
+);
+
+
+const carDataPlayInput = document.getElementById("autodaten-play");
+const filepath = "Fahrdaten/daten.json";
+
+async function getCarData() {
+    const response = await fetch(filepath);
+    globalThis.carData = await response.json();
+}
+
+carDataPlayInput.addEventListener("click", (ev) => {
+    if (globalThis.carData) {
+        globalThis.carData.currentIndex = 0;
+        scheduler(); // kick off scheduling
+    }
+
+});
+
+function scheduler() {
+    const speed = carData[carData.currentIndex].spd;
+    const trqLd = carData[carData.currentIndex].trqLd;
+    const accelPdlPosn = carData[carData.currentIndex].accelPdlPosn;
+
+    speedInput.value = speed;
+    trqLdInput.value = trqLd;
+    accelPdlPosnInput.value = accelPdlPosn;
+
+    trqLdInput.dispatchEvent(new Event('input'));
+    speedInput.dispatchEvent(new Event('input'));
+    accelPdlPosnInput.dispatchEvent(new Event('input'));
+
+    carData.currentIndex++;
+
+    if (carData.currentIndex < carData.length) {
+        setTimeout(scheduler, 10);
+        //setTimeout(scheduler, (carData[carData.currentIndex].t - audioCtx.currentTime) * 1000);
     }
 }
 
-function handleEvent(event) {
-    this[event.currentTarget.name] = event.currentTarget.value;
-}
-
-
-const startButton = document.getElementById("play-test")
-startButton.addEventListener("click", startAllSources);
-
-function startAllSources(event) {
-    const nodeList = document.querySelectorAll("audio-buffer-source-node");
-
-    for (const node of nodeList) {
-        node.start()
-    }
-}
-
-const stopButton = document.getElementById("stop-reset")
-stopButton.addEventListener("click", stopAllSources);
-
-function stopAllSources(event) {
-    const nodeList = document.querySelectorAll("audio-buffer-source-node");
-
-    for (const node of nodeList) {
-        node.stop()
-    }
-}
+getCarData().then(() => { console.log("Fahrdaten geladen"); });
