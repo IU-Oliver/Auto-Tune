@@ -6,7 +6,18 @@ main, .category {
     display: flex;
 }
 
-.sound, audio-buffer-source-node {
+audio-buffer-source-node {
     flex: auto;
 }
 
+input[type="checkbox"] {
+    appearance: none;
+    font: inherit;
+    background-color: red;
+    width: 1.15em;
+    height: 1.15em;
+}
+
+input[type="checkbox"]:checked {
+    background-color: green;
+}

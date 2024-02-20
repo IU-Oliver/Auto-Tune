@@ -20,18 +20,6 @@ class Setter extends EventTarget {
 
 }
 
-
-    /*
-    #emitChangeEvent() {
-      this.dispatchEvent(new CustomEvent("valuechange", { detail: this.value }));
-    }
-  
-    increment() {
-      this.value++;
-      this.#emitChangeEvent();
-    }
-    */
-
 class ElementExtension {
 
 }
@@ -207,56 +195,4 @@ class BindingExtension extends ElementExtension {
 
 }
 
-
 BindingExtension.createStandardQueryExtensions();
-
-/*
-for (const node of document.querySelectorAll("input[data-path]")) {
-
-    new BindingExtension(node);
-}
-*/
-
-
-
-const startButton = document.getElementById("play-test")
-startButton.addEventListener("click", startAllSources);
-
-function startAllSources(event) {
-    const nodeList = document.querySelectorAll("audio-buffer-source-node");
-
-    for (const node of nodeList) {
-        node.start()
-    }
-}
-
-const stopButton = document.getElementById("stop-reset")
-stopButton.addEventListener("click", stopAllSources);
-class Counter extends EventTarget {
-    constructor(initialValue = 0) {
-        super();
-        this.value = initialValue;
-    }
-
-    #emitChangeEvent() {
-        this.dispatchEvent(new CustomEvent("valuechange", { detail: this.value }));
-    }
-
-    increment() {
-        this.value++;
-        this.#emitChangeEvent();
-    }
-
-    decrement() {
-        this.value--;
-        this.#emitChangeEvent();
-    }
-}
-
-function stopAllSources(event) {
-    const nodeList = document.querySelectorAll("audio-buffer-source-node");
-
-    for (const node of nodeList) {
-        node.stop()
-    }
-}
