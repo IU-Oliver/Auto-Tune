@@ -27,17 +27,22 @@ function stopAllSources(event) {
 const accelPdlPosnInput = document.getElementById("accel-pdl-posn");
 const trqLdInput = document.getElementById("trq-ld");
 const speedInput = document.getElementById("speed");
-const speedTargets = document.querySelectorAll("audio-buffer-source-node");
+const speedTargets = document.querySelectorAll("audio-buffer-source-node, audio-stacker-node > input[type=range]");
+//const speedTargets = document.querySelectorAll("audio-buffer-source-node");
 
 speedInput.addEventListener("input",
     () => {
-        //console.log("input");
-
         const speed = speedInput.value;
         const detune = (speed - 75) * 10;
 
         for (const target of speedTargets) {
-            target.be[0].detune.value = detune;
+            if (target.tagName === "INPUT") {
+                target.value = speed;
+                target.dispatchEvent(new Event('input'));
+            }
+            else {
+                if (target.be !== undefined) target.be[0].detune.value = detune;
+            }
         }
 
         // für den Tunnel
