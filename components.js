@@ -29,7 +29,7 @@ class BeAudioBufferSourceNode extends HTMLElement {
     audioBuffer;
 
     get active() {
-        return this.be === undefined? this.cash.active : this.be[2].gain.value === 1? true : false;
+        return this.be === undefined? this.cash.active : this.be[1].gain.value === 1? true : false;
     }
     set active(value) {
         this.cash.active = value;
@@ -233,10 +233,10 @@ class BeAudioStackerNode extends HTMLElement {
         audioBufferSourceNode.detune.value = this.cash.tune;
 
         const gainNode1 = new GainNode(this.audioContext);
-        gainNode1.gain.value = this.cash.active;
+        gainNode1.gain.value = 0;
 
         const gainNode2 = new GainNode(this.audioContext);
-        gainNode2.gain.value = 0;
+        gainNode2.gain.value = this.cash.active;
 
         audioBufferSourceNode.connect(gainNode1).connect(gainNode2).connect(this.audioContext.destination);
         audioBufferSourceNode.start(time);

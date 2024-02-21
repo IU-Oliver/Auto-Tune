@@ -1,25 +1,28 @@
 
 
+const stopButton = document.getElementById("stop-reset")
 const startButton = document.getElementById("play-test")
 startButton.addEventListener("click", startAllSources);
+stopButton.addEventListener("click", stopAllSources);
 
 function startAllSources(event) {
     const nodeList = document.querySelectorAll("audio-buffer-source-node, audio-stacker-node");
 
     for (const node of nodeList) {
-        node.start()
+        node.start();
     }
+    stopButton.disabled = false;
+    startButton.disabled = true;
 }
-
-const stopButton = document.getElementById("stop-reset")
-stopButton.addEventListener("click", stopAllSources);
 
 function stopAllSources(event) {
     const nodeList = document.querySelectorAll("audio-buffer-source-node, audio-stacker-node");
 
     for (const node of nodeList) {
-        node.stop()
+        node.stop();
     }
+    startButton.disabled = false;
+    stopButton.disabled = true;
 }
 
 
@@ -28,7 +31,6 @@ const accelPdlPosnInput = document.getElementById("accel-pdl-posn");
 const trqLdInput = document.getElementById("trq-ld");
 const speedInput = document.getElementById("speed");
 const speedTargets = document.querySelectorAll("audio-buffer-source-node, audio-stacker-node > input[type=range]");
-//const speedTargets = document.querySelectorAll("audio-buffer-source-node");
 
 speedInput.addEventListener("input",
     () => {

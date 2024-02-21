@@ -108,7 +108,7 @@
             
             <section class="stop">
                 <!-- <label>Stop / Reset<input type="checkbox" id="stop"></label> -->
-                <button id="stop-reset">Stop / Reset</button>
+                <button id="stop-reset" disabled="">Stop / Reset</button>
             </section>
 
             <details>
@@ -143,6 +143,21 @@
         </section>
     
     </main>
+
+    <section class="visualiser">
+        <details>
+            <summary>Visualiser</summary>
+            <!-- The canvas where ThreeJs renders the WebGL -->
+        <canvas id="scene"></canvas>
+        <!--
+        <script src="js/vendors/three.min.js"></script>
+        <script src="main.js"></script>
+        -->
+        <script src="Tunnel/js/three.min.js"></script>
+        <script src="Tunnel/js/TweenMax.min.js"></script>
+        <script src="Tunnel/main.js"></script>
+        </details>
+    </section>
 
 </body>
 
