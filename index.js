@@ -28,9 +28,43 @@ function stopAllSources(event) {
 
 
 const accelPdlPosnInput = document.getElementById("accel-pdl-posn");
+const accelPdlPosnTargets = document.querySelectorAll("audio-buffer-source-node:nth-child(1) > input[type=range]");
+accelPdlPosnInput.addEventListener("input",
+    () => {
+        for (const target of accelPdlPosnTargets) {
+            target.value = accelPdlPosnInput.value / 50;
+            target.dispatchEvent(new Event('input'));
+            /*
+            if (target.tagName === "INPUT") {
+                target.value = speed;
+                target.dispatchEvent(new Event('input'));
+            }
+            else {
+                if (target.be !== undefined) target.be[0].detune.value = detune;
+            }
+            */
+        }
+    },
+    false
+);
+
+
 const trqLdInput = document.getElementById("trq-ld");
+const trqLdTargets = document.querySelectorAll("audio-buffer-source-node:nth-child(2) > input[type=range]");
+
+trqLdInput.addEventListener("input",
+    () => {
+        for (const target of trqLdTargets) {
+            target.value = trqLdInput.value / 50;
+            target.dispatchEvent(new Event('input'));
+        }
+    },
+    false
+);
+
+
 const speedInput = document.getElementById("speed");
-const speedTargets = document.querySelectorAll("audio-buffer-source-node, audio-stacker-node > input[type=range]");
+const speedTargets = document.querySelectorAll("audio-buffer-source-node:nth-child(3), audio-stacker-node > input[type=range]");
 
 speedInput.addEventListener("input",
     () => {

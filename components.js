@@ -66,7 +66,7 @@ class BeAudioBufferSourceNode extends HTMLElement {
         super();
 
         this.cash.active = false;
-        this.cash.intensity = 1;
+        this.cash.intensity = 0;
         this.cash.tune = 1;
     }
 
@@ -103,14 +103,13 @@ class BeAudioBufferSourceNode extends HTMLElement {
 
     async getFile(filepath) {
         const response = await fetch(filepath);
-        const arrayBuffer = await response.arrayBuffer();
-        const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
-        return audioBuffer;
+        return await this.audioContext.decodeAudioData(await response.arrayBuffer());
     }
 
     async setupSample() {
-        const audioBuffer = await this.getFile(this.attributes.src.value);
-        return audioBuffer;
+        //const audioBuffer = await this.getFile(this.attributes.src.value);
+        return await this.getFile(this.attributes.src.value);
+        //return audioBuffer;
     }
 
     startSample(time) {
