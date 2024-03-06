@@ -1,5 +1,3 @@
-
-
 const stopButton = document.getElementById("stop-reset")
 const startButton = document.getElementById("play-test")
 startButton.addEventListener("click", startAllSources);
@@ -8,27 +6,25 @@ stopButton.addEventListener("click", stopAllSources);
 function startAllSources(event) {
     const nodeList = document.querySelectorAll("audio-buffer-source-node, audio-stacker-node");
 
-    for (const node of nodeList) {
-        node.start();
-    }
-    stopButton.disabled = false;
+    for (const node of nodeList) node.start();
+
+    stopButton.disabled  = false;
     startButton.disabled = true;
 }
 
 function stopAllSources(event) {
     const nodeList = document.querySelectorAll("audio-buffer-source-node, audio-stacker-node");
 
-    for (const node of nodeList) {
-        node.stop();
-    }
+    for (const node of nodeList) node.stop();
+
+    stopButton.disabled  = true;
     startButton.disabled = false;
-    stopButton.disabled = true;
 }
 
 
 
 const accelPdlPosnInput = document.getElementById("accel-pdl-posn");
-const accelPdlPosnTargets = document.querySelectorAll("audio-buffer-source-node:nth-child(1) > input[type=range]");
+const accelPdlPosnTargets = document.querySelectorAll(":not(.no-simulation) > audio-buffer-source-node:nth-child(1) > input[type=range]");
 accelPdlPosnInput.addEventListener("input",
     () => {
         for (const target of accelPdlPosnTargets) {
@@ -50,7 +46,7 @@ accelPdlPosnInput.addEventListener("input",
 
 
 const trqLdInput = document.getElementById("trq-ld");
-const trqLdTargets = document.querySelectorAll("audio-buffer-source-node:nth-child(2) > input[type=range]");
+const trqLdTargets = document.querySelectorAll(":not(.no-simulation) > audio-buffer-source-node:nth-child(2) > input[type=range]");
 
 trqLdInput.addEventListener("input",
     () => {
@@ -64,7 +60,7 @@ trqLdInput.addEventListener("input",
 
 
 const speedInput = document.getElementById("speed");
-const speedTargets = document.querySelectorAll("audio-buffer-source-node:nth-child(3), audio-stacker-node > input[type=range]");
+const speedTargets = document.querySelectorAll(":not(.no-simulation) > audio-buffer-source-node:nth-child(3), audio-stacker-node > input[type=range]");
 
 speedInput.addEventListener("input",
     () => {
@@ -86,23 +82,7 @@ speedInput.addEventListener("input",
     },
     false
 );
-speedInput.addEventListener("change",
-    () => {
-        console.log("change");
-
-        /*
-        const speed = speedInput.value;
-
-        if (globalThis.spdNodes) {
-            spdNodes[0].detune.value = (speed - 75) * 10;
-        }
-        stackerSpeedChanged(speed);
-
-        globalThis.speed = speed / 500;
-        */
-    },
-    false
-);
+speedInput.addEventListener("change", () => { console.log("change"); }, false);
 
 
 const carDataPlayInput = document.getElementById("autodaten-play");
@@ -117,6 +97,7 @@ carDataPlayInput.addEventListener("click", (ev) => {
     if (globalThis.carData) {
         globalThis.carData.currentIndex = 0;
         scheduler(); // kick off scheduling
+        carDataPlayInput.disabled = true;
     }
 
 });
