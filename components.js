@@ -1,11 +1,14 @@
-class BeAudioContext extends HTMLElement {
+class Be extends HTMLElement {
+    be;
+}
+
+class BaseAudioContext extends Be {
     
     //static observedAttributes = ["color", "size"];
 
-    be;
 
     connectedCallback() {
-        if (this.be === undefined) this.be = new AudioContext();
+        //if (this.be === undefined) this.be = new AudioContext();
     }
 
     disconnectedCallback() {
@@ -21,11 +24,193 @@ class BeAudioContext extends HTMLElement {
     }
 }
 
-class BeAudioBufferSourceNode extends HTMLElement {
+class BeAudioContext extends BaseAudioContext {
+    
+    //static observedAttributes = ["color", "size"];
+
+    be = new AudioContext();
+
+    connectedCallback() {
+        //if (this.be === undefined) this.be = new AudioContext();
+    }
+
+    disconnectedCallback() {
+        console.log("BeAudioContext.disconnectedCallback()");
+    }
+
+    adoptedCallback() {
+        console.log("BeAudioContext.adoptedCallback()");
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        console.log(`BeAudioContext.attributeChangedCallback(${name}, ${oldValue}, ${newValue})`);
+    }
+}
+
+class BeAudioNode extends Be {
+
+    cash = {};
+
+    get context() { return this.be.contexct; }
+    get numberOfInputs() { return this.be.numberOfInputs; }
+    get numberOfOutputs() { return this.be.numberOfOutputs; }
+    get channelCount() { return this.be.channelCount; }
+    set channelCount(v) { this.be.channelCount = v; }
+    get channelCountMode() { return this.be.channelCountMode; }
+    set channelCountMode(v) { this.be.channelCountMode = v; }
+    get channelInterpretation() { return this.be.channelInterpretation; }
+    set channelInterpretation(v) { this.be.channelInterpretation = v; }
+
+    get audioContext() {
+        if (this.cash.audioContext === undefined) {
+            this.cash.audioContext = this.closest("audio-context").be;
+        }
+        return this.cash.audioContext;
+    }
+    get destination() {
+        if (this.attributes.destination) return this.querySelector(this.attributes.destination.value);
+        return this.nextElementSibling? this.nextElementSibling : this.parentElement;
+    }
+
+    constructor() {
+        super();
+
+        document.addEventListener("DOMContentLoaded", this.init.bind(this));
+    }
+
+    init() {
+
+    }
+
+    connect(destination, outputIndex, inputIndex) {
+        this.be.connect(destination.be, outputIndex, inputIndex);
+    }
+    disconnect() {
+        this.be.disconnect();
+    }
+
+    connectedCallback() {
+        //super.connectedCallback();
+        console.log("BeAudioContext.connectedCallback()");
+    }
+
+}
+
+class BeAudioDestinationNode extends BeAudioNode {
+    //get be() { return this.audioContext.destination; }
+
+    connectedCallback() {
+        this.be = this.audioContext.destination;
+    }
+}
+
+
+
+class BeGainNode extends BeAudioNode {
+
+    get gain() {
+        return this.be === undefined? this.cash.gain : this.be.gain.value;
+    }
+    set gain(v) {
+        this.cash.gain = v;
+        if (this.be === undefined) return;
+        this.be.gain.value = v;
+    }
+    
+
+    constructor() {
+        super();
+
+
+        this.cash.gain = 1;
+    }
+
+    init() {
+        if (this.attributes.gain) this.gain = parseInt(this.attributes.gain.value);
+        this.connect(this.destination);
+    }
+
+    connectedCallback() {
+        this.be = new GainNode(this.audioContext);
+        this.be.gain.value = this.cash.gain;
+    }
+}
+
+class BeAudioBufferSourceNode extends BeAudioNode {
+    get detune() {
+        return this.be === undefined? this.cash.tune : this.be.detune.value;
+    }
+    set detune(value) {
+        this.cash.detune = value;
+        if (this.be === undefined) return;
+        this.be.detune.value = value;
+    }
+
+    constructor() {
+        super();
+
+        this.cash.active = false;
+        this.cash.detune = 1;
+    }
+
+    connectedCallback() {
+        this.setup();
+    }
+
+    setup() {
+        this.setupSample().then((audioBuffer) => {
+            this.audioBuffer = audioBuffer;
+        });
+    }
+    async setupSample() {
+        //const audioBuffer = await this.getFile(this.attributes.src.value);
+        return await this.getFile(this.attributes.src.value);
+        //return audioBuffer;
+    }
+    async getFile(filepath) {
+        const response = await fetch(filepath);
+        return await this.audioContext.decodeAudioData(await response.arrayBuffer());
+    }
+
+    start() {
+        this.startSample(0);
+    }
+    stop() {
+        if (this.be) this.be.stop();
+    }
+
+    startSample(time) {
+        this.be = new AudioBufferSourceNode(this.audioContext, { buffer: this.audioBuffer });
+        this.be.loop = true;
+        this.be.detune.value = this.cash.detune;
+
+        this.connect(this.destination);
+
+        this.be.start(time);
+
+
+/*
+
+        const audioBufferSourceNode = new AudioBufferSourceNode(this.audioContext, { buffer: this.audioBuffer });
+        audioBufferSourceNode.loop = true;
+        audioBufferSourceNode.detune.value = this.cash.tune;
+
+        const gainNode1 = new GainNode(this.audioContext);
+        gainNode1.gain.value = this.cash.active? 1 : 0;
+
+        const gainNode2 = new GainNode(this.audioContext);
+        gainNode2.gain.value = this.cash.intensity;
+
+        audioBufferSourceNode.connect(gainNode1).connect(gainNode2).connect(this.audioContext.destination);
+        audioBufferSourceNode.start(time);
+        return [audioBufferSourceNode, gainNode1, gainNode2];
+        */
+    }
+}
+
+class BeAudioBufferSourceNode2 extends BeAudioNode {
     static observedAttributes = ["src"];
 
-    be;
-    cash = {};
     audioBuffer;
 
     get active() {
@@ -53,13 +238,6 @@ class BeAudioBufferSourceNode extends HTMLElement {
         this.cash.tune = value;
         if (this.be === undefined) return;
         this.be[0].detune.value = value;
-    }
-
-    get audioContext() {
-        if (this.cash.audioContext === undefined) {
-            this.cash.audioContext = this.closest("audio-context").be;
-        }
-        return this.cash.audioContext;
     }
 
     constructor() {
@@ -98,7 +276,7 @@ class BeAudioBufferSourceNode extends HTMLElement {
     }
 
     stop() {
-        if (this.be) this.be[0].stop();
+        if (this.be) this.be.stop();
     }
 
     async getFile(filepath) {
@@ -322,5 +500,8 @@ class BeAudioStackerNode extends HTMLElement {
 }
 
 customElements.define("audio-context", BeAudioContext);
+customElements.define("audio-destination-node", BeAudioDestinationNode);
+
 customElements.define("audio-buffer-source-node", BeAudioBufferSourceNode);
+customElements.define("gain-node", BeGainNode);
 customElements.define("audio-stacker-node", BeAudioStackerNode);
