@@ -26,7 +26,7 @@ class ElementExtension {
 
 class BindingExtension extends ElementExtension {
 
-    static standardQuery = "input[data-path]";
+    static standardQuery = "input[data-path], input[data-query], select[data-path], select[data-query]";
     static createStandardQueryExtensions() {
         for (const node of document.querySelectorAll(BindingExtension.standardQuery)) {
             new BindingExtension(node);
@@ -45,6 +45,12 @@ class BindingExtension extends ElementExtension {
 
         if (node.dataset.query !== undefined) {
             const slectedNodes = document.querySelectorAll(node.dataset.query);
+
+            if (slectedNodes.length) { this.node.value = slectedNodes[0][this.node.name]; }
+
+            for (const slectedNode of slectedNodes) {
+                this.objects.add(slectedNode);
+            }
         }
 
 
@@ -75,13 +81,13 @@ class BindingExtension extends ElementExtension {
                 this.objects.add(object);
     
                 this.node.value = object[this.node.name];
-    
-                this.eventHandler = new Setter(this.node, this.objects);
-                this.node.addEventListener("input", this.eventHandler);
             } else {
                 console.log("not this");
             }
         }
+        
+        this.eventHandler = new Setter(this.node, this.objects);
+        this.node.addEventListener("input", this.eventHandler);
         
 
         

@@ -73,10 +73,21 @@ function getUserMedia(dictionary, callback) {
 }
 
 function connectAudioAPI() {
+    analyser = document.querySelector("analyser-node").be;
+    animate();
+
+    console.log("analyser");
+    console.log(analyser);
+
+   /*
     try {
-        context = new AudioContext()
-        analyser = context.createAnalyser()
-        analyser.fftSize = 2048
+        //context = new AudioContext()
+        context = document.querySelector("audio-context").be;
+        analyser = context.createAnalyser();
+        analyser.fftSize = 2048;
+
+        biquadFilterNode = document.querySelector("biquad-filter-node").be;
+        mediaSource.connect(analyser);
 
         navigator.mediaDevices
             .getUserMedia({ audio: true, video: false })
@@ -92,6 +103,8 @@ function connectAudioAPI() {
     } catch (e) {
         alert(e)
     }
+    */
+    
 }
 
 function updateFFT() {
