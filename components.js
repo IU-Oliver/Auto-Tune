@@ -78,9 +78,7 @@ class BeAudioNode extends Be {
         document.addEventListener("DOMContentLoaded", this.init.bind(this));
     }
 
-    init() {
-
-    }
+    init() {}
 
     connect(destination, outputIndex, inputIndex) {
         this.be.connect(destination.be, outputIndex, inputIndex);
@@ -104,7 +102,18 @@ class BeAudioDestinationNode extends BeAudioNode {
     }
 }
 
+class BeChannelMergerNode extends BeAudioNode {
+    //numberOfInputs = this.attributes.destination
 
+    constructor() {
+        super();
+        
+    }
+
+    init() {
+        console.log("init");
+    }
+}
 
 class BeGainNode extends BeAudioNode {
 
@@ -207,7 +216,7 @@ class BeAudioBufferSourceNode extends BeAudioNode {
         */
     }
 }
-
+/*
 class BeAudioBufferSourceNode2 extends BeAudioNode {
     static observedAttributes = ["src"];
 
@@ -307,7 +316,7 @@ class BeAudioBufferSourceNode2 extends BeAudioNode {
     }
 
 }
-
+*/
 class BeAudioStackerNode extends HTMLElement {
     //static observedAttributes = ["src"];
 
@@ -501,7 +510,8 @@ class BeAudioStackerNode extends HTMLElement {
 
 customElements.define("audio-context", BeAudioContext);
 customElements.define("audio-destination-node", BeAudioDestinationNode);
-
 customElements.define("audio-buffer-source-node", BeAudioBufferSourceNode);
 customElements.define("gain-node", BeGainNode);
+customElements.define("channel-merger-node", BeChannelMergerNode);
+
 customElements.define("audio-stacker-node", BeAudioStackerNode);
