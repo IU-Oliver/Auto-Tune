@@ -297,12 +297,13 @@
                 <input data-path="this.parentNode" name="intensity" type="range" min="0" max="160" value="0" step="0.01">
             </audio-stacker-node>
 
-            <biquad-filter-node destinations="analyser-node">
-                <input data-path="this.parentNode" name="detune" type="range" min="-153600" max="153600" value="0" step="0.01">
-                <input data-path="this.parentNode" name="frequency" type="range" min="10" max="20000" value="350" step="0.01">
-                <input data-path="this.parentNode" name="gain" type="range" min="-10000" max="1541" value="0" step="0.01">
-                <input data-path="this.parentNode" name="q" type="range" min="-770" max="770" value="1" step="0.01">
-                <input data-path="this.parentNode" name="q" type="range" min="0" max="10000" value="1" step="0.01">
+            <biquad-filter-node destinations="analyser-node" frequency="10000">
+            <!--<biquad-filter-node>-->
+                <input data-path="this.parentNode" name="detune" type="range" min="-153600" max="153600" step="0.01">
+                <input data-path="this.parentNode" name="frequency" type="range" min="10" max="10000" step="0.01">
+                <input data-path="this.parentNode" name="gain" type="range" min="-10000" max="1541" step="0.01">
+                <input data-path="this.parentNode" name="q" type="range" min="-770" max="770" step="0.01">
+                <input data-path="this.parentNode" name="q" type="range" min="0" max="10000" step="0.01">
                 <select data-path="this.parentNode" name="type">
                     <option>lowpass</option>
                     <option>highpass</option>
@@ -315,11 +316,11 @@
                 </select>
             </biquad-filter-node>
             <biquad-filter-node type="highpass">
-                <input data-path="this.parentNode" name="detune" type="range" min="-153600" max="153600" value="0" step="0.01">
-                <input data-path="this.parentNode" name="frequency" type="range" min="10" max="20000" value="350" step="0.01">
-                <input data-path="this.parentNode" name="gain" type="range" min="-10000" max="1541" value="0" step="0.01">
-                <input data-path="this.parentNode" name="q" type="range" min="-770" max="770" value="1" step="0.01">
-                <input data-path="this.parentNode" name="q" type="range" min="0" max="10000" value="1" step="0.01">
+                <input data-path="this.parentNode" name="detune" type="range" min="-153600" max="153600" step="0.01">
+                <input data-path="this.parentNode" name="frequency" type="range" min="10" max="10000" step="0.01">
+                <input data-path="this.parentNode" name="gain" type="range" min="-10000" max="1541" step="0.01">
+                <input data-path="this.parentNode" name="q" type="range" min="-770" max="770" step="0.01">
+                <input data-path="this.parentNode" name="q" type="range" min="0" max="10000" step="0.01">
                 <select data-path="this.parentNode" name="type">
                     <option>lowpass</option>
                     <option>highpass</option>
@@ -333,6 +334,7 @@
             </biquad-filter-node>
 
             <analyser-node destinations="">
+            <!--<analyser-node>-->
                 <select data-path="this.parentNode" name="fftSize">
                     <option>32</option>
                     <option>64</option>

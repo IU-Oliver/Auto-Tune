@@ -55,7 +55,7 @@ button:hover {
 /*audio-context input[type="range"] {*/
 input[type="range"] {
     appearance: slider-vertical;
-    writing-mode: vertical-lr;
+    /*writing-mode: vertical-lr;*/
 }
 
 
@@ -68,7 +68,7 @@ audio-buffer-source-node {
 
 #visualiser {
     width: 100%;
-    height: 500px;
+    height: 1000px;
 }
    
 

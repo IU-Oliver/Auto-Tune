@@ -12,9 +12,9 @@ scene.add(light)
 
 //const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
 const camera = new THREE.PerspectiveCamera(75, visualiser.clientWidth / visualiser.clientHeight, 0.1, 1000)
-camera.position.x = 7
-camera.position.y = 0.75
-camera.position.z = 10
+camera.position.x = 0//7
+camera.position.y = 2//.75
+camera.position.z = -10
 
 const renderer = new THREE.WebGLRenderer()
 //renderer.setSize(window.innerWidth, window.innerHeight)
@@ -30,19 +30,45 @@ canvas.height = 512
 
 const ctx = canvas.getContext('2d')
 
+
+const displacementMap = new THREE.Texture(canvas)
+displacementMap.minFilter = THREE.LinearFilter
+displacementMap.magFilter = THREE.LinearFilter
+
 const texture = new THREE.Texture(canvas)
 texture.minFilter = THREE.LinearFilter
 texture.magFilter = THREE.LinearFilter
 
-const plane = new THREE.Mesh(
-    new THREE.PlaneGeometry(20, 20, 256, 256),
-    new THREE.MeshPhongMaterial({
-        wireframe: true,
-        color: new THREE.Color(0x00ff00),
-        displacementMap: texture,
-        displacementScale: 10,
-    })
-)
+
+
+//const texture = new THREE.TextureLoader().load('Images/px_25.jpg')
+/*
+const material = new THREE.MeshBasicMaterial();
+*/
+const material = new THREE.MeshPhongMaterial({
+    wireframe: true,
+    //color: new THREE.Color(0x00ff00),
+    displacementMap: displacementMap,
+    displacementScale: 10,
+});
+
+material.map = texture;
+/*
+const envTexture = new THREE.CubeTextureLoader().load([
+    'Images/px_25.jpg',
+    'Images/nx_25.jpg',
+    'Images/py_25.jpg',
+    'Images/ny_25.jpg',
+    'Images/pz_25.jpg',
+    'Images/nz_25.jpg',
+])
+envTexture.mapping = THREE.CubeReflectionMapping
+//envTexture.mapping = THREE.CubeRefractionMapping
+material.envMap = envTexture
+*/
+
+const plane = new THREE.Mesh(new THREE.PlaneGeometry(20, 20, 256, 256), material);
+
 plane.rotateX(-Math.PI / 2)
 scene.add(plane)
 
@@ -59,7 +85,7 @@ let context
 let analyser
 let mediaSource
 let imageData
-
+/*
 function getUserMedia(dictionary, callback) {
     try {
         navigator.getUserMedia =
@@ -71,7 +97,7 @@ function getUserMedia(dictionary, callback) {
         alert('getUserMedia threw exception :' + e)
     }
 }
-
+*/
 function connectAudioAPI() {
     analyser = document.querySelector("analyser-node").be;
     animate();
@@ -116,11 +142,13 @@ function updateFFT() {
     ctx.putImageData(imageData, 0, 0, 0, 0, 256, 512)
 
     for (let x = 0; x < 256; x++) {
-        ctx.fillStyle = 'rgb(' + timeData[x] + ', 0, 0) '
+        if (x < 100 || x > 156) ctx.fillStyle = 'rgb(' + timeData[x] + ', 0, 0) ';
+        else ctx.fillStyle = 'rgb(0, 0, 0) ';
         ctx.fillRect(x, 510, 2, 2)
     }
 
-    texture.needsUpdate = true
+    displacementMap.needsUpdate = true;
+    texture.needsUpdate = true;
 }
 
 const stats = new Stats()

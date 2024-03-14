@@ -24,7 +24,8 @@ function stopAllSources(event) {
 
 
 const accelPdlPosnInput = document.getElementById("accel-pdl-posn");
-const accelPdlPosnTargets = document.querySelectorAll(":not(.no-simulation) > audio-buffer-source-node:nth-child(1) > input[type=range]");
+//const accelPdlPosnTargets = document.querySelectorAll(":not(.no-simulation) > audio-buffer-source-node:nth-child(1) > input[type=range]");
+const accelPdlPosnTargets = document.querySelectorAll(".category > section:nth-child(1) > gain-node > input[type=range]");
 accelPdlPosnInput.addEventListener("input",
     () => {
         for (const target of accelPdlPosnTargets) {
@@ -46,7 +47,8 @@ accelPdlPosnInput.addEventListener("input",
 
 
 const trqLdInput = document.getElementById("trq-ld");
-const trqLdTargets = document.querySelectorAll(":not(.no-simulation) > audio-buffer-source-node:nth-child(2) > input[type=range]");
+//const trqLdTargets = document.querySelectorAll(":not(.no-simulation) > audio-buffer-source-node:nth-child(2) > input[type=range]");
+const trqLdTargets = document.querySelectorAll(".category > section:nth-child(2) > gain-node > input[type=range]");
 
 trqLdInput.addEventListener("input",
     () => {
@@ -60,7 +62,8 @@ trqLdInput.addEventListener("input",
 
 
 const speedInput = document.getElementById("speed");
-const speedTargets = document.querySelectorAll(":not(.no-simulation) > audio-buffer-source-node:nth-child(3), audio-stacker-node > input[type=range]");
+//const speedTargets = document.querySelectorAll(":not(.no-simulation) > audio-buffer-source-node:nth-child(3), audio-stacker-node > input[type=range]");
+const speedTargets = document.querySelectorAll(".category > section:nth-child(3) > audio-buffer-source-node > input[type=range], audio-stacker-node > input[type=range]");
 
 speedInput.addEventListener("input",
     () => {
