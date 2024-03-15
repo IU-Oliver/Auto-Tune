@@ -23,345 +23,189 @@
     <header>Electronic Vehicle Sound Composer</header>
 
     <main>
-        <audio-context data-query=":scope > * :closest() audio-buffer-source-node :closest(section)" class="generators">
+        <section class="audio-context">
             Generators
-            <section id="first-row" class="category">
+            <section class="category">
                 <section>
-                    <audio-buffer-source-node id="r1c1source" src="Audio/01SpurSynth01-DM-G5.mp3">
-                        <input data-path="this.parentNode" name="detune" type="range" list="detune-buffer-datalist" min="-2400" max="2400" value="0" step="0.01" id="volume1">
-                    </audio-buffer-source-node>
-                    <gain-node gain="0">
-                        <input data-path="this.parentNode" name="gain" type="checkbox">
-                    </gain-node>
-                    <gain-node destinations="biquad-filter-node, audio-context">
-                        <input data-path="this.parentNode" name="gain" type="range" list="gain-datalist" min="0" max="2" value="0" step="0.01" id="gain2">
-                    </gain-node>
+                    <input data-query="audio-buffer-source-node:nth-of-type(1)" name="detune" type="range" min="-2400" max="2400" value="0" step="0.01" list="detune-buffer-datalist">
+                    <input data-query="audio-buffer-source-node:nth-of-type(1) + gain-node" name="gain" type="checkbox">
+                    <input data-query="audio-buffer-source-node:nth-of-type(1) + gain-node + gain-node" name="gain" type="range" min="0" max="2" value="0" step="0.01" list="gain-datalist">
                 </section>
-
                 <section>
-                <audio-buffer-source-node src="Audio/01SpurSynth01-Rh-G.mp3">
-                   <input data-path="this.parentNode" name="detune" type="range" list="detune-buffer-datalist" min="-2400" max="2400" value="0" step="0.01" id="volume1">
-                </audio-buffer-source-node>
-                <gain-node gain="0">
-                    <input data-path="this.parentNode" name="gain" type="checkbox">
-                </gain-node>
-                <gain-node destinations="biquad-filter-node, audio-context">
-                    <input data-path="this.parentNode" name="gain" type="range" min="0" max="2" value="0" step="0.01" id="gain2">
-                </gain-node>
+                    <input data-query="audio-buffer-source-node:nth-of-type(2)" name="detune" type="range" min="-2400" max="2400" value="0" step="0.01" list="detune-buffer-datalist">
+                    <input data-query="audio-buffer-source-node:nth-of-type(2) + gain-node" name="gain" type="checkbox">
+                    <input data-query="audio-buffer-source-node:nth-of-type(2) + gain-node + gain-node" name="gain" type="range" min="0" max="2" value="0" step="0.01" list="gain-datalist">
                 </section>
-
                 <section>
-                <audio-buffer-source-node src="Audio/01SpurSynth01-Rh-Hm.mp3">
-                   <input data-path="this.parentNode" name="detune" type="range" list="detune-buffer-datalist" min="-2400" max="2400" value="0" step="0.01" id="volume1">
-                </audio-buffer-source-node>
-                <gain-node gain="0">
-                    <input data-path="this.parentNode" name="gain" type="checkbox">
-                </gain-node>
-                <gain-node destinations="biquad-filter-node, audio-context">
-                    <input data-path="this.parentNode" name="gain" type="range" min="0" max="2" value="0" step="0.01" id="gain2">
-                </gain-node>
+                    <input data-query="audio-buffer-source-node:nth-of-type(3)" name="detune" type="range" min="-2400" max="2400" value="0" step="0.01" list="detune-buffer-datalist">
+                    <input data-query="audio-buffer-source-node:nth-of-type(3) + gain-node" name="gain" type="checkbox">
+                    <input data-query="audio-buffer-source-node:nth-of-type(3) + gain-node + gain-node" name="gain" type="range" min="0" max="2" value="0" step="0.01" list="gain-datalist">
                 </section>
             </section>
-
-            <section id="second-row" class="category">
+            <section class="category">
                 <section>
-                <audio-buffer-source-node src="Audio/02SpurSynth02-DM-G5.mp3">
-                   <input data-path="this.parentNode" name="detune" type="range" list="detune-buffer-datalist" min="-2400" max="2400" value="0" step="0.01" id="volume1">
-                </audio-buffer-source-node>
-                <gain-node gain="0">
-                    <input data-path="this.parentNode" name="gain" type="checkbox">
-                </gain-node>
-                <gain-node destinations="biquad-filter-node, audio-context">
-                    <input data-path="this.parentNode" name="gain" type="range" min="0" max="2" value="0" step="0.01" id="gain2">
-                </gain-node>
+                    <input data-query="audio-buffer-source-node:nth-of-type(4)" name="detune" type="range" min="-2400" max="2400" value="0" step="0.01" list="detune-buffer-datalist">
+                    <input data-query="audio-buffer-source-node:nth-of-type(4) + gain-node" name="gain" type="checkbox">
+                    <input data-query="audio-buffer-source-node:nth-of-type(4) + gain-node + gain-node" name="gain" type="range" min="0" max="2" value="0" step="0.01" list="gain-datalist">
                 </section>
-
                 <section>
-                <audio-buffer-source-node src="Audio/02SpurSynth02-Rh-G.mp3">
-                   <input data-path="this.parentNode" name="detune" type="range" list="detune-buffer-datalist" min="-2400" max="2400" value="0" step="0.01" id="volume1">
-                </audio-buffer-source-node>
-                <gain-node gain="0">
-                    <input data-path="this.parentNode" name="gain" type="checkbox">
-                </gain-node>
-                <gain-node destinations="biquad-filter-node, audio-context">
-                    <input data-path="this.parentNode" name="gain" type="range" min="0" max="2" value="0" step="0.01" id="gain2">
-                </gain-node>
+                    <input data-query="audio-buffer-source-node:nth-of-type(5)" name="detune" type="range" min="-2400" max="2400" value="0" step="0.01" list="detune-buffer-datalist">
+                    <input data-query="audio-buffer-source-node:nth-of-type(5) + gain-node" name="gain" type="checkbox">
+                    <input data-query="audio-buffer-source-node:nth-of-type(5) + gain-node + gain-node" name="gain" type="range" min="0" max="2" value="0" step="0.01" list="gain-datalist">
                 </section>
-
                 <section>
-                <audio-buffer-source-node src="Audio/02SpurSynth02-Rh-Hm.mp3">
-                   <input data-path="this.parentNode" name="detune" type="range" list="detune-buffer-datalist" min="-2400" max="2400" value="0" step="0.01" id="volume1">
-                </audio-buffer-source-node>
-                <gain-node gain="0">
-                    <input data-path="this.parentNode" name="gain" type="checkbox">
-                </gain-node>
-                <gain-node destinations="biquad-filter-node, audio-context">
-                    <input data-path="this.parentNode" name="gain" type="range" min="0" max="2" value="0" step="0.01" id="gain2">
-                </gain-node>
+                    <input data-query="audio-buffer-source-node:nth-of-type(6)" name="detune" type="range" min="-2400" max="2400" value="0" step="0.01" list="detune-buffer-datalist">
+                    <input data-query="audio-buffer-source-node:nth-of-type(6) + gain-node" name="gain" type="checkbox">
+                    <input data-query="audio-buffer-source-node:nth-of-type(6) + gain-node + gain-node" name="gain" type="range" min="0" max="2" value="0" step="0.01" list="gain-datalist">
                 </section>
             </section>
-
-            <section id="third-row" class="category">
+            <section class="category">
                 <section>
-                <audio-buffer-source-node src="Audio/03SpurVoice03-DM-G5.mp3">
-                        <input data-path=" this.parentNode" name="detune" type="range" min="-2400" max="2400" value="0" step="0.01" id="volume1">
-                </audio-buffer-source-node>
-                <gain-node gain="0">
-                    <input data-path="this.parentNode" name="gain" type="checkbox">
-                </gain-node>
-                <gain-node destinations="biquad-filter-node, audio-context">
-                    <input data-path="this.parentNode" name="gain" type="range" min="0" max="2" value="0" step="0.01" id="gain2">
-                </gain-node>
+                    <input data-query="audio-buffer-source-node:nth-of-type(7)" name="detune" type="range" min="-2400" max="2400" value="0" step="0.01" list="detune-buffer-datalist">
+                    <input data-query="audio-buffer-source-node:nth-of-type(7) + gain-node" name="gain" type="checkbox">
+                    <input data-query="audio-buffer-source-node:nth-of-type(7) + gain-node + gain-node" name="gain" type="range" min="0" max="2" value="0" step="0.01" list="gain-datalist">
                 </section>
-
                 <section>
-                <audio-buffer-source-node src="Audio/03SpurVoice03-Rh-G.mp3">
-                   <input data-path="this.parentNode" name="detune" type="range" list="detune-buffer-datalist" min="-2400" max="2400" value="0" step="0.01" id="volume1">
-                </audio-buffer-source-node>
-                <gain-node gain="0">
-                    <input data-path="this.parentNode" name="gain" type="checkbox">
-                </gain-node>
-                <gain-node destinations="biquad-filter-node, audio-context">
-                    <input data-path="this.parentNode" name="gain" type="range" min="0" max="2" value="0" step="0.01" id="gain2">
-                </gain-node>
+                    <input data-query="audio-buffer-source-node:nth-of-type(8)" name="detune" type="range" min="-2400" max="2400" value="0" step="0.01" list="detune-buffer-datalist">
+                    <input data-query="audio-buffer-source-node:nth-of-type(8) + gain-node" name="gain" type="checkbox">
+                    <input data-query="audio-buffer-source-node:nth-of-type(8) + gain-node + gain-node" name="gain" type="range" min="0" max="2" value="0" step="0.01" list="gain-datalist">
                 </section>
-
                 <section>
-                <audio-buffer-source-node src="Audio/03SpurVoice03-Rh-Hm.mp3">
-                   <input data-path="this.parentNode" name="detune" type="range" list="detune-buffer-datalist" min="-2400" max="2400" value="0" step="0.01" id="volume1">
-                </audio-buffer-source-node>
-                <gain-node gain="0">
-                    <input data-path="this.parentNode" name="gain" type="checkbox">
-                </gain-node>
-                <gain-node destinations="biquad-filter-node, audio-context">
-                    <input data-path="this.parentNode" name="gain" type="range" min="0" max="2" value="0" step="0.01" id="gain2">
-                </gain-node>
+                    <input data-query="audio-buffer-source-node:nth-of-type(9)" name="detune" type="range" min="-2400" max="2400" value="0" step="0.01" list="detune-buffer-datalist">
+                    <input data-query="audio-buffer-source-node:nth-of-type(9) + gain-node" name="gain" type="checkbox">
+                    <input data-query="audio-buffer-source-node:nth-of-type(9) + gain-node + gain-node" name="gain" type="range" min="0" max="2" value="0" step="0.01" list="gain-datalist">
                 </section>
             </section>
-
-            <section id="fourth-row" class="category">
+            <section class="category">
                 <section>
-                <audio-buffer-source-node src="Audio/04SpurGeige04-DM-G5.mp3">
-                   <input data-path="this.parentNode" name="detune" type="range" list="detune-buffer-datalist" min="-2400" max="2400" value="0" step="0.01" id="volume1">
-                </audio-buffer-source-node>
-                <gain-node gain="0">
-                    <input data-path="this.parentNode" name="gain" type="checkbox">
-                </gain-node>
-                <gain-node destinations="biquad-filter-node, audio-context">
-                    <input data-path="this.parentNode" name="gain" type="range" min="0" max="2" value="0" step="0.01" id="gain2">
-                </gain-node>
+                    <input data-query="audio-buffer-source-node:nth-of-type(10)" name="detune" type="range" min="-2400" max="2400" value="0" step="0.01" list="detune-buffer-datalist">
+                    <input data-query="audio-buffer-source-node:nth-of-type(10) + gain-node" name="gain" type="checkbox">
+                    <input data-query="audio-buffer-source-node:nth-of-type(10) + gain-node + gain-node" name="gain" type="range" min="0" max="2" value="0" step="0.01" list="gain-datalist">
                 </section>
-
                 <section>
-                <audio-buffer-source-node src="Audio/04SpurGeige04-Rh-G.mp3">
-                   <input data-path="this.parentNode" name="detune" type="range" list="detune-buffer-datalist" min="-2400" max="2400" value="0" step="0.01" id="volume1">
-                </audio-buffer-source-node>
-                <gain-node gain="0">
-                    <input data-path="this.parentNode" name="gain" type="checkbox">
-                </gain-node>
-                <gain-node destinations="biquad-filter-node, audio-context">
-                    <input data-path="this.parentNode" name="gain" type="range" min="0" max="2" value="0" step="0.01" id="gain2">
-                </gain-node>
+                    <input data-query="audio-buffer-source-node:nth-of-type(11)" name="detune" type="range" min="-2400" max="2400" value="0" step="0.01" list="detune-buffer-datalist">
+                    <input data-query="audio-buffer-source-node:nth-of-type(11) + gain-node" name="gain" type="checkbox">
+                    <input data-query="audio-buffer-source-node:nth-of-type(11) + gain-node + gain-node" name="gain" type="range" min="0" max="2" value="0" step="0.01" list="gain-datalist">
                 </section>
-
                 <section>
-                <audio-buffer-source-node src="Audio/04SpurGeige04-Rh-Hm.mp3">
-                   <input data-path="this.parentNode" name="detune" type="range" list="detune-buffer-datalist" min="-2400" max="2400" value="0" step="0.01" id="volume1">
-                </audio-buffer-source-node>
-                <gain-node gain="0">
-                    <input data-path="this.parentNode" name="gain" type="checkbox">
-                </gain-node>
-                <gain-node destinations="biquad-filter-node, audio-context">
-                    <input data-path="this.parentNode" name="gain" type="range" min="0" max="2" value="0" step="0.01" id="gain2">
-                </gain-node>
+                    <input data-query="audio-buffer-source-node:nth-of-type(12)" name="detune" type="range" min="-2400" max="2400" value="0" step="0.01" list="detune-buffer-datalist">
+                    <input data-query="audio-buffer-source-node:nth-of-type(12) + gain-node" name="gain" type="checkbox">
+                    <input data-query="audio-buffer-source-node:nth-of-type(12) + gain-node + gain-node" name="gain" type="range" min="0" max="2" value="0" step="0.01" list="gain-datalist">
                 </section>
             </section>
-
-            <section id="fifth-row" class="category" img src="Images/geige.png" fit="#">
+            <section class="category">
                 <section>
-                <audio-buffer-source-node src="Audio/05SpurOrgel05-DM-G5.mp3">
-                   <input data-path="this.parentNode" name="detune" type="range" list="detune-buffer-datalist" min="-2400" max="2400" value="0" step="0.01" id="volume1">
-                </audio-buffer-source-node>
-                <gain-node gain="0">
-                    <input data-path="this.parentNode" name="gain" type="checkbox">
-                </gain-node>
-                <gain-node destinations="biquad-filter-node, audio-context">
-                    <input data-path="this.parentNode" name="gain" type="range" min="0" max="2" value="0" step="0.01" id="gain2">
-                </gain-node>
+                    <input data-query="audio-buffer-source-node:nth-of-type(13)" name="detune" type="range" min="-2400" max="2400" value="0" step="0.01" list="detune-buffer-datalist">
+                    <input data-query="audio-buffer-source-node:nth-of-type(13) + gain-node" name="gain" type="checkbox">
+                    <input data-query="audio-buffer-source-node:nth-of-type(13) + gain-node + gain-node" name="gain" type="range" min="0" max="2" value="0" step="0.01" list="gain-datalist">
                 </section>
-
                 <section>
-                <audio-buffer-source-node src="Audio/05SpurOrgel05-Rh-G.mp3">
-                   <input data-path="this.parentNode" name="detune" type="range" list="detune-buffer-datalist" min="-2400" max="2400" value="0" step="0.01" id="volume1">
-                </audio-buffer-source-node>
-                <gain-node gain="0">
-                    <input data-path="this.parentNode" name="gain" type="checkbox">
-                </gain-node>
-                <gain-node destinations="biquad-filter-node, audio-context">
-                    <input data-path="this.parentNode" name="gain" type="range" min="0" max="2" value="0" step="0.01" id="gain2">
-                </gain-node>
+                    <input data-query="audio-buffer-source-node:nth-of-type(14)" name="detune" type="range" min="-2400" max="2400" value="0" step="0.01" list="detune-buffer-datalist">
+                    <input data-query="audio-buffer-source-node:nth-of-type(14) + gain-node" name="gain" type="checkbox">
+                    <input data-query="audio-buffer-source-node:nth-of-type(14) + gain-node + gain-node" name="gain" type="range" min="0" max="2" value="0" step="0.01" list="gain-datalist">
                 </section>
-
                 <section>
-                <audio-buffer-source-node src="Audio/05SpurOrgel05-Rh-Hm.mp3">
-                   <input data-path="this.parentNode" name="detune" type="range" list="detune-buffer-datalist" min="-2400" max="2400" value="0" step="0.01" id="volume1">
-                </audio-buffer-source-node>
-                <gain-node gain="0">
-                    <input data-path="this.parentNode" name="gain" type="checkbox">
-                </gain-node>
-                <gain-node destinations="biquad-filter-node, audio-context">
-                    <input data-path="this.parentNode" name="gain" type="range" min="0" max="2" value="0" step="0.01" id="gain2">
-                </gain-node>
+                    <input data-query="audio-buffer-source-node:nth-of-type(15)" name="detune" type="range" min="-2400" max="2400" value="0" step="0.01" list="detune-buffer-datalist">
+                    <input data-query="audio-buffer-source-node:nth-of-type(15) + gain-node" name="gain" type="checkbox">
+                    <input data-query="audio-buffer-source-node:nth-of-type(15) + gain-node + gain-node" name="gain" type="range" min="0" max="2" value="0" step="0.01" list="gain-datalist">
                 </section>
             </section>
-
-            <section id="sixth-row" class="category">
+            <section class="category">
                 <section>
-                <audio-buffer-source-node src="Audio/08SpurSynth08-DM-G5.mp3">
-                   <input data-path="this.parentNode" name="detune" type="range" list="detune-buffer-datalist" min="-2400" max="2400" value="0" step="0.01" id="volume1">
-                </audio-buffer-source-node>
-                <gain-node gain="0">
-                    <input data-path="this.parentNode" name="gain" type="checkbox">
-                </gain-node>
-                <gain-node destinations="biquad-filter-node, audio-context">
-                    <input data-path="this.parentNode" name="gain" type="range" min="0" max="2" value="0" step="0.01" id="gain2">
-                </gain-node>
+                    <input data-query="audio-buffer-source-node:nth-of-type(16)" name="detune" type="range" min="-2400" max="2400" value="0" step="0.01" list="detune-buffer-datalist">
+                    <input data-query="audio-buffer-source-node:nth-of-type(16) + gain-node" name="gain" type="checkbox">
+                    <input data-query="audio-buffer-source-node:nth-of-type(16) + gain-node + gain-node" name="gain" type="range" min="0" max="2" value="0" step="0.01" list="gain-datalist">
                 </section>
-
                 <section>
-                <audio-buffer-source-node src="Audio/06SpurBubbles06-Rh-G.mp3">
-                   <input data-path="this.parentNode" name="detune" type="range" list="detune-buffer-datalist" min="-2400" max="2400" value="0" step="0.01" id="volume1">
-                </audio-buffer-source-node>
-                <gain-node gain="0">
-                    <input data-path="this.parentNode" name="gain" type="checkbox">
-                </gain-node>
-                <gain-node destinations="biquad-filter-node, audio-context">
-                    <input data-path="this.parentNode" name="gain" type="range" min="0" max="2" value="0" step="0.01" id="gain2">
-                </gain-node>
+                    <input data-query="audio-buffer-source-node:nth-of-type(17)" name="detune" type="range" min="-2400" max="2400" value="0" step="0.01" list="detune-buffer-datalist">
+                    <input data-query="audio-buffer-source-node:nth-of-type(17) + gain-node" name="gain" type="checkbox">
+                    <input data-query="audio-buffer-source-node:nth-of-type(17) + gain-node + gain-node" name="gain" type="range" min="0" max="2" value="0" step="0.01" list="gain-datalist">
                 </section>
-
                 <section>
-                <audio-buffer-source-node src="Audio/04SpurGeige04-Rh-Hm.mp3">
-                   <input data-path="this.parentNode" name="detune" type="range" list="detune-buffer-datalist" min="-2400" max="2400" value="0" step="0.01" id="volume1">
-                </audio-buffer-source-node>
-                <gain-node gain="0">
-                    <input data-path="this.parentNode" name="gain" type="checkbox">
-                </gain-node>
-                <gain-node destinations="biquad-filter-node, audio-context">
-                    <input data-path="this.parentNode" name="gain" type="range" min="0" max="2" value="0" step="0.01" id="gain2">
-                </gain-node>
-                </section>
-
-            </section>
-
-            <section id="seventh-row" class="category no-simulation">
-                <section>
-                <audio-buffer-source-node src="Audio/07SpurBeat07-01.mp3">
-                   <input data-path="this.parentNode" name="detune" type="range" list="detune-buffer-datalist" min="-2400" max="2400" value="0" step="0.01" id="volume1">
-                </audio-buffer-source-node>
-                <gain-node gain="0">
-                    <input data-path="this.parentNode" name="gain" type="checkbox">
-                </gain-node>
-                <gain-node destinations="biquad-filter-node, audio-context">
-                    <input data-path="this.parentNode" name="gain" type="range" min="0" max="2" value="0" step="0.01" id="gain2">
-                </gain-node>
-                </section>
-
-                <section>
-                <audio-buffer-source-node src="Audio/07SpurBeat07-02.mp3">
-                   <input data-path="this.parentNode" name="detune" type="range" list="detune-buffer-datalist" min="-2400" max="2400" value="0" step="0.01" id="volume1">
-                </audio-buffer-source-node>
-                <gain-node gain="0">
-                    <input data-path="this.parentNode" name="gain" type="checkbox">
-                </gain-node>
-                <gain-node destinations="biquad-filter-node, audio-context">
-                    <input data-path="this.parentNode" name="gain" type="range" min="0" max="2" value="0" step="0.01" id="gain2">
-                </gain-node>
-                </section>
-
-                <section>
-                <audio-buffer-source-node src="Audio/07SpurBeat07-03.mp3">
-                   <input data-path="this.parentNode" name="detune" type="range" list="detune-buffer-datalist" min="-2400" max="2400" value="0" step="0.01" id="volume1">
-                </audio-buffer-source-node>
-                <gain-node gain="0">
-                    <input data-path="this.parentNode" name="gain" type="checkbox">
-                </gain-node>
-                <gain-node destinations="biquad-filter-node, audio-context">
-                    <input data-path="this.parentNode" name="gain" type="range" min="0" max="2" value="0" step="0.01" id="gain2">
-                </gain-node>
+                    <input data-query="audio-buffer-source-node:nth-of-type(18)" name="detune" type="range" min="-2400" max="2400" value="0" step="0.01" list="detune-buffer-datalist">
+                    <input data-query="audio-buffer-source-node:nth-of-type(18) + gain-node" name="gain" type="checkbox">
+                    <input data-query="audio-buffer-source-node:nth-of-type(18) + gain-node + gain-node" name="gain" type="range" min="0" max="2" value="0" step="0.01" list="gain-datalist">
                 </section>
             </section>
-
-            <audio-stacker-node id="eigth-row">
-                <input data-path="this.parentNode" name="active" type="checkbox">
-                <input data-path="this.parentNode" name="intensity" type="range" min="0" max="160" value="0" step="0.01">
-            </audio-stacker-node>
-
-            <biquad-filter-node destinations="analyser-node" frequency="10000">
-            <!--<biquad-filter-node>-->
-                <input data-path="this.parentNode" name="detune" type="range" min="-153600" max="153600" step="0.01">
-                <input data-path="this.parentNode" name="frequency" type="range" min="10" max="10000" step="0.01">
-                <input data-path="this.parentNode" name="gain" type="range" min="-10000" max="1541" step="0.01">
-                <input data-path="this.parentNode" name="q" type="range" min="-770" max="770" step="0.01">
-                <input data-path="this.parentNode" name="q" type="range" min="0" max="10000" step="0.01">
-                <select data-path="this.parentNode" name="type">
-                    <option>lowpass</option>
-                    <option>highpass</option>
-                    <option>bandpass</option>
-                    <option>lowshelf</option>
-                    <option>highshelf</option>
-                    <option>peaking</option>
-                    <option>notch</option>
-                    <option>allpass</option>
-                </select>
-            </biquad-filter-node>
-            <biquad-filter-node type="highpass">
-                <input data-path="this.parentNode" name="detune" type="range" min="-153600" max="153600" step="0.01">
-                <input data-path="this.parentNode" name="frequency" type="range" min="10" max="10000" step="0.01">
-                <input data-path="this.parentNode" name="gain" type="range" min="-10000" max="1541" step="0.01">
-                <input data-path="this.parentNode" name="q" type="range" min="-770" max="770" step="0.01">
-                <input data-path="this.parentNode" name="q" type="range" min="0" max="10000" step="0.01">
-                <select data-path="this.parentNode" name="type">
-                    <option>lowpass</option>
-                    <option>highpass</option>
-                    <option>bandpass</option>
-                    <option>lowshelf</option>
-                    <option>highshelf</option>
-                    <option>peaking</option>
-                    <option>notch</option>
-                    <option>allpass</option>
-                </select>
-            </biquad-filter-node>
-
-            <analyser-node destinations="">
-            <!--<analyser-node>-->
-                <select data-path="this.parentNode" name="fftSize">
-                    <option>32</option>
-                    <option>64</option>
-                    <option>128</option>
-                    <option>256</option>
-                    <option>512</option>
-                    <option>1024</option>
-                    <option selected>2048</option>
-                    <option>4096</option>
-                    <option>8192</option>
-                    <option>16384</option>
-                    <option>32768</option>
-                </select>
-                <input data-path="this.parentNode" name="maxDecibels" type="number" value="-30">
-                <input data-path="this.parentNode" name="minDecibels" type="number" value="-100">
-                <input data-path="this.parentNode" name="smoothingTimeConstant" type="range" min="0" max="1" value="0.8" step="0.01">
-            </analyser-node>
-
-        </audio-context>
-
-       
+            <section class="category">
+                <section>
+                    <input data-query="audio-buffer-source-node:nth-of-type(19)" name="detune" type="range" min="-2400" max="2400" value="0" step="0.01" list="detune-buffer-datalist">
+                    <input data-query="audio-buffer-source-node:nth-of-type(19) + gain-node" name="gain" type="checkbox">
+                    <input data-query="audio-buffer-source-node:nth-of-type(19) + gain-node + gain-node" name="gain" type="range" min="0" max="2" value="0" step="0.01" list="gain-datalist">
+                </section>
+                <section>
+                    <input data-query="audio-buffer-source-node:nth-of-type(20)" name="detune" type="range" min="-2400" max="2400" value="0" step="0.01" list="detune-buffer-datalist">
+                    <input data-query="audio-buffer-source-node:nth-of-type(20) + gain-node" name="gain" type="checkbox">
+                    <input data-query="audio-buffer-source-node:nth-of-type(20) + gain-node + gain-node" name="gain" type="range" min="0" max="2" value="0" step="0.01" list="gain-datalist">
+                </section>
+                <section>
+                    <input data-query="audio-buffer-source-node:nth-of-type(21)" name="detune" type="range" min="-2400" max="2400" value="0" step="0.01" list="detune-buffer-datalist">
+                    <input data-query="audio-buffer-source-node:nth-of-type(21) + gain-node" name="gain" type="checkbox">
+                    <input data-query="audio-buffer-source-node:nth-of-type(21) + gain-node + gain-node" name="gain" type="range" min="0" max="2" value="0" step="0.01" list="gain-datalist">
+                </section>
+            </section>
+            <section class="category">
+                <input data-query="audio-stacker-node" name="active" type="checkbox">
+                <input data-query="audio-stacker-node" name="intensity" type="range" min="0" max="160" value="0" step="0.01">
+            </section>
+            <section class="category">
+                <section>
+                    <input data-query="biquad-filter-node:nth-of-type(1)" name="detune" type="range" min="-153600" max="153600" step="0.01">
+                    <input data-query="biquad-filter-node:nth-of-type(1)" name="frequency" type="range" min="10" max="10000" step="0.01">
+                    <input data-query="biquad-filter-node:nth-of-type(1)" name="gain" type="range" min="-10000" max="1541" step="0.01">
+                    <input data-query="biquad-filter-node:nth-of-type(1)" name="q" type="range" min="-770" max="770" step="0.01">
+                    <input data-query="biquad-filter-node:nth-of-type(1)" name="q" type="range" min="0" max="10000" step="0.01">
+                    <select data-query="biquad-filter-node:nth-of-type(1)" name="type">
+                        <option>lowpass</option>
+                        <option>highpass</option>
+                        <option>bandpass</option>
+                        <option>lowshelf</option>
+                        <option>highshelf</option>
+                        <option>peaking</option>
+                        <option>notch</option>
+                        <option>allpass</option>
+                    </select>
+                </section>
+                <section>
+                    <input data-query="biquad-filter-node:nth-of-type(2)" name="detune" type="range" min="-153600" max="153600" step="0.01">
+                    <input data-query="biquad-filter-node:nth-of-type(2)" name="frequency" type="range" min="10" max="10000" step="0.01">
+                    <input data-query="biquad-filter-node:nth-of-type(2)" name="gain" type="range" min="-10000" max="1541" step="0.01">
+                    <input data-query="biquad-filter-node:nth-of-type(2)" name="q" type="range" min="-770" max="770" step="0.01">
+                    <input data-query="biquad-filter-node:nth-of-type(2)" name="q" type="range" min="0" max="10000" step="0.01">
+                    <select data-query="biquad-filter-node:nth-of-type(2)" name="type">
+                        <option>lowpass</option>
+                        <option>highpass</option>
+                        <option>bandpass</option>
+                        <option>lowshelf</option>
+                        <option>highshelf</option>
+                        <option>peaking</option>
+                        <option>notch</option>
+                        <option>allpass</option>
+                    </select>
+                </section>
+                <section>
+                    <select data-query="analyser" name="fftSize">
+                        <option>32</option>
+                        <option>64</option>
+                        <option>128</option>
+                        <option>256</option>
+                        <option>512</option>
+                        <option>1024</option>
+                        <option selected>2048</option>
+                        <option>4096</option>
+                        <option>8192</option>
+                        <option>16384</option>
+                        <option>32768</option>
+                    </select>
+                    <input data-query="analyser" name="maxDecibels" type="number" value="-30">
+                    <input data-query="analyser" name="minDecibels" type="number" value="-100">
+                    <input data-query="analyser" name="smoothingTimeConstant" type="range" min="0" max="1" value="0.8" step="0.01">
+                </section>
+            </section>
+        </section>       
 
         <section class="controller">
             Controllers
-
-            <!-- <input data-query="#r1c1source" name="detune" type="range" list="detune-buffer-datalist" min="-2400" max="2400" value="0" step="0.01"> -->
-
             <section class="play">
                 <!--<label>Play / Test<input type="checkbox" id="play"></label>-->
                 <button id="play-test">Test Sound</button>
@@ -402,8 +246,106 @@
             </section>
 
         </section>
+        <!-- <audio-context data-path=":scope > * :closest() audio-buffer-source-node :closest(section)" class="generators"></audio-context> -->
+        <audio-context class="generators">
+            
+            <audio-buffer-source-node src="Audio/01SpurSynth01-DM-G5.mp3"></audio-buffer-source-node>
+            <gain-node gain="0"></gain-node>
+            <gain-node destinations="biquad-filter-node, audio-context"></gain-node>
 
-        
+            <audio-buffer-source-node src="Audio/01SpurSynth01-Rh-G.mp3"></audio-buffer-source-node>
+            <gain-node gain="0"></gain-node>
+            <gain-node destinations="biquad-filter-node, audio-context"></gain-node>
+
+            <audio-buffer-source-node src="Audio/01SpurSynth01-Rh-Hm.mp3"></audio-buffer-source-node>
+            <gain-node gain="0"></gain-node>
+            <gain-node destinations="biquad-filter-node, audio-context"></gain-node>
+
+
+            <audio-buffer-source-node src="Audio/02SpurSynth02-DM-G5.mp3"></audio-buffer-source-node>
+            <gain-node gain="0"></gain-node>
+            <gain-node destinations="biquad-filter-node, audio-context"></gain-node>
+
+            <audio-buffer-source-node src="Audio/02SpurSynth02-Rh-G.mp3"></audio-buffer-source-node>
+            <gain-node gain="0"></gain-node>
+            <gain-node destinations="biquad-filter-node, audio-context"></gain-node>
+
+            <audio-buffer-source-node src="Audio/02SpurSynth02-Rh-Hm.mp3"></audio-buffer-source-node>
+            <gain-node gain="0"></gain-node>
+            <gain-node destinations="biquad-filter-node, audio-context"></gain-node>
+
+
+            <audio-buffer-source-node src="Audio/03SpurVoice03-DM-G5.mp3"></audio-buffer-source-node>
+            <gain-node gain="0"></gain-node>
+            <gain-node destinations="biquad-filter-node, audio-context"></gain-node>
+
+            <audio-buffer-source-node src="Audio/03SpurVoice03-Rh-G.mp3"></audio-buffer-source-node>
+            <gain-node gain="0"></gain-node>
+            <gain-node destinations="biquad-filter-node, audio-context"></gain-node>
+
+            <audio-buffer-source-node src="Audio/03SpurVoice03-Rh-Hm.mp3"></audio-buffer-source-node>
+            <gain-node gain="0"></gain-node>
+            <gain-node destinations="biquad-filter-node, audio-context"></gain-node>
+
+
+            <audio-buffer-source-node src="Audio/04SpurGeige04-DM-G5.mp3"></audio-buffer-source-node>
+            <gain-node gain="0"></gain-node>
+            <gain-node destinations="biquad-filter-node, audio-context"></gain-node>
+
+            <audio-buffer-source-node src="Audio/04SpurGeige04-Rh-G.mp3"></audio-buffer-source-node>
+            <gain-node gain="0"></gain-node>
+            <gain-node destinations="biquad-filter-node, audio-context"></gain-node>
+
+            <audio-buffer-source-node src="Audio/04SpurGeige04-Rh-Hm.mp3"></audio-buffer-source-node>
+            <gain-node gain="0"></gain-node>
+            <gain-node destinations="biquad-filter-node, audio-context"></gain-node>
+
+
+            <audio-buffer-source-node src="Audio/05SpurOrgel05-DM-G5.mp3"></audio-buffer-source-node>
+            <gain-node gain="0"></gain-node>
+            <gain-node destinations="biquad-filter-node, audio-context"></gain-node>
+
+            <audio-buffer-source-node src="Audio/05SpurOrgel05-Rh-G.mp3"></audio-buffer-source-node>
+            <gain-node gain="0"></gain-node>
+            <gain-node destinations="biquad-filter-node, audio-context"></gain-node>
+
+            <audio-buffer-source-node src="Audio/05SpurOrgel05-Rh-Hm.mp3"></audio-buffer-source-node>
+            <gain-node gain="0"></gain-node>
+            <gain-node destinations="biquad-filter-node, audio-context"></gain-node>
+
+
+            <audio-buffer-source-node src="Audio/08SpurSynth08-DM-G5.mp3"></audio-buffer-source-node>
+            <gain-node gain="0"></gain-node>
+            <gain-node destinations="biquad-filter-node, audio-context"></gain-node>
+
+            <audio-buffer-source-node src="Audio/06SpurBubbles06-Rh-G.mp3"></audio-buffer-source-node>
+            <gain-node gain="0"></gain-node>
+            <gain-node destinations="biquad-filter-node, audio-context"></gain-node>
+
+            <audio-buffer-source-node src="Audio/04SpurGeige04-Rh-Hm.mp3"></audio-buffer-source-node>
+            <gain-node gain="0"></gain-node>
+            <gain-node destinations="biquad-filter-node, audio-context"></gain-node>
+
+
+            <audio-buffer-source-node src="Audio/07SpurBeat07-01.mp3"></audio-buffer-source-node>
+            <gain-node gain="0"></gain-node>
+            <gain-node destinations="biquad-filter-node, audio-context"></gain-node>
+
+            <audio-buffer-source-node src="Audio/07SpurBeat07-02.mp3"></audio-buffer-source-node>
+            <gain-node gain="0"></gain-node>
+            <gain-node destinations="biquad-filter-node, audio-context"></gain-node>
+
+            <audio-buffer-source-node src="Audio/07SpurBeat07-03.mp3"></audio-buffer-source-node>
+            <gain-node gain="0"></gain-node>
+            <gain-node destinations="biquad-filter-node, audio-context"></gain-node>
+
+            <audio-stacker-node></audio-stacker-node>
+
+            <biquad-filter-node destinations="analyser-node" frequency="10000"></biquad-filter-node>
+            <biquad-filter-node type="highpass"></biquad-filter-node>
+
+            <analyser-node destinations=""></analyser-node>
+        </audio-context>
     
     </main>
 
@@ -412,7 +354,7 @@
             <summary>Visualiser</summary>
             <div id="visualiser"></div>
         </details>
-        </section>
+    </section>
 
     <datalist id="detune-buffer-datalist">
         <option value="-2400"></option>
