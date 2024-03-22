@@ -34,13 +34,12 @@ const ctx = canvas.getContext('2d')
 const displacementMap = new THREE.Texture(canvas)
 displacementMap.minFilter = THREE.LinearFilter
 displacementMap.magFilter = THREE.LinearFilter
-/*
+
 const texture = new THREE.Texture(canvas)
 texture.minFilter = THREE.LinearFilter
 texture.magFilter = THREE.LinearFilter
-*/
 
-const texture = new THREE.TextureLoader().load('Images/px_25.jpg')
+//const texture = new THREE.TextureLoader().load('Images/px_25.jpg')
 /*
 const material = new THREE.MeshBasicMaterial();
 */
@@ -51,7 +50,7 @@ const material = new THREE.MeshPhongMaterial({
     displacementScale: 10,
     map: texture
 });
-
+/*
 const envTexture = new THREE.CubeTextureLoader().load([
     'Images/px_25.jpg',
     'Images/nx_25.jpg',
@@ -63,7 +62,7 @@ const envTexture = new THREE.CubeTextureLoader().load([
 envTexture.mapping = THREE.CubeReflectionMapping
 //envTexture.mapping = THREE.CubeRefractionMapping
 material.envMap = envTexture
-
+*/
 
 const plane = new THREE.Mesh(new THREE.PlaneGeometry(20, 20, 256, 256), material);
 
