@@ -46,7 +46,7 @@ texture.magFilter = THREE.LinearFilter
 const material = new THREE.MeshBasicMaterial();
 */
 const material = new THREE.MeshPhongMaterial({
-    wireframe: true,
+    //wireframe: true,
     //color: new THREE.Color(0x00ff00),
     displacementMap: displacementMap,
     displacementScale: 10,
@@ -142,8 +142,43 @@ function updateFFT() {
     ctx.putImageData(imageData, 0, 0, 0, 0, 256, 512)
 
     for (let x = 0; x < 256; x++) {
-        if (x < 100 || x > 156) ctx.fillStyle = 'rgb(' + timeData[x] + ', 0, 0) ';
-        else ctx.fillStyle = 'rgb(0, 0, 0) ';
+        var td = timeData[x];
+        if (x > 100 && x < 156) td = td / 10;
+        var tdh = td / 2;
+        var tdt = td / 3;
+        var r = 0;
+        var g = 0;
+        var b = 0;
+
+        switch (true) {
+            case td < 37:
+                r = td;
+                break;
+            case td < 73:
+                g = td;
+                break;
+            case td < 109:
+                b = td;
+                break;
+            case td < 146:
+                r = tdh;
+                g = tdh;
+                break;
+            case td < 182:
+                r = tdh;
+                b = tdh;
+                break;
+            case td < 219:
+                g = tdh;
+                b = tdh;
+                break;
+            default:
+                r = tdt;
+                g = tdt;
+                b = tdt;
+        }
+
+        ctx.fillStyle = 'rgb(' + r + ', ' + g + ', ' + b + ') ';
         ctx.fillRect(x, 510, 2, 2)
     }
 
