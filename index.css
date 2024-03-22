@@ -8,7 +8,7 @@ body > * {
     color: rgb(222, 222, 222);
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 28px;
-    padding:2%
+    padding:2%;
 
 
 }
@@ -20,24 +20,30 @@ main, .category {
 
 audio-buffer-source-node {
     flex: auto;
+
+}
+
+label[for="type01"] {
+    color: rgb(141, 141, 141);
+    font-size: 15px;
+    margin-bottom: 2px;
+
+
 }
 
 button {
-    height: 100px;
-    width: 100px;
+    height: 130px;
+    width: 130px;
     border-radius: 50%;
-    border: 1px solid rgb(132, 132, 132); 
     color: rgb(68, 68, 68);
     border: none;
     padding: 5px;
-    height: 130px;
     font-size: 25px;
-    width: 130px;
-    box-shadow: 0 2px 4px rgb(66, 84, 84);
     border-radius: 20%;
     cursor: pointer;
     transition: all 0.2s ease;
-    margin: 33px;
+    margin-bottom: 30px;
+    margin-top: 30px;
 }
 
 button:active {
@@ -55,15 +61,17 @@ button:hover {
 /*audio-context input[type="range"] {*/
 input[type="range"] {
     appearance: slider-vertical;
+    
     /*writing-mode: vertical-lr;*/
 }
 
 
 audio-buffer-source-node {
-    min-width: 322px;
+    min-width: 500px;
     background-size: 50%;
     background-repeat: no-repeat;
     background-position: 50% 40%;
+
 }
 
 #visualiser {
@@ -72,28 +80,45 @@ audio-buffer-source-node {
 }
    
 
-#first-row audio-buffer-source-node {
-    background-image: url("Images/geige.png");
-}
 
 input[type="range"] {
     position: relative;
-    width: 50px;
+    width: 70px;
+    font-size: 10px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+
+
+
 }
 
 input[type="range"]::after {
     writing-mode: horizontal-tb;
     position: absolute;
     color: white;
-    content: attr(max);
+ /*   content: attr(max);*/
     bottom: 100%;
 }
 input[type="range"]::before {
     writing-mode: horizontal-tb;
     position: absolute;
     color: white;
-    content: attr(name) " " attr(min);
+ /*   content: attr(name) " " attr(min);*/
     top: 100%;
+}
+
+input[name="detune"]::after {
+    content: "Tuning 100 %";
+}
+input[name="detune"]::before {
+    content: "0 %";
+}
+
+input[type="range"][name="gain"]::after {
+    content: "Intensity 100 %";
+}
+input[type="range"][name="gain"]::before {
+    content: "0 %";
 }
 
 datalist {
@@ -107,7 +132,8 @@ input[type="checkbox"] {
     border: none;
     border-radius: 10px;
     background-size: 200%;
-    margin: 30px;
+    margin-top:30px;
+    margin-left:50px;
     padding: 60px;
     transition: all 0.2s ease;
     opacity: 0.3;

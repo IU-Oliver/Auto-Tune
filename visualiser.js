@@ -34,14 +34,13 @@ const ctx = canvas.getContext('2d')
 const displacementMap = new THREE.Texture(canvas)
 displacementMap.minFilter = THREE.LinearFilter
 displacementMap.magFilter = THREE.LinearFilter
-
+/*
 const texture = new THREE.Texture(canvas)
 texture.minFilter = THREE.LinearFilter
 texture.magFilter = THREE.LinearFilter
+*/
 
-
-
-//const texture = new THREE.TextureLoader().load('Images/px_25.jpg')
+const texture = new THREE.TextureLoader().load('Images/px_25.jpg')
 /*
 const material = new THREE.MeshBasicMaterial();
 */
@@ -50,10 +49,9 @@ const material = new THREE.MeshPhongMaterial({
     //color: new THREE.Color(0x00ff00),
     displacementMap: displacementMap,
     displacementScale: 10,
+    map: texture
 });
 
-material.map = texture;
-/*
 const envTexture = new THREE.CubeTextureLoader().load([
     'Images/px_25.jpg',
     'Images/nx_25.jpg',
@@ -65,7 +63,7 @@ const envTexture = new THREE.CubeTextureLoader().load([
 envTexture.mapping = THREE.CubeReflectionMapping
 //envTexture.mapping = THREE.CubeRefractionMapping
 material.envMap = envTexture
-*/
+
 
 const plane = new THREE.Mesh(new THREE.PlaneGeometry(20, 20, 256, 256), material);
 
@@ -137,6 +135,8 @@ function updateFFT() {
     let timeData = new Uint8Array(analyser.frequencyBinCount)
 
     analyser.getByteFrequencyData(timeData)
+
+
 
     imageData = ctx.getImageData(0, 1, 256, 511)
     ctx.putImageData(imageData, 0, 0, 0, 0, 256, 512)
