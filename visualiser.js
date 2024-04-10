@@ -34,7 +34,7 @@ light.target.position.set(-5, 0, 0);
 scene.add(light);
 scene.add(light.target);
 
-scene.add(light)
+//scene.add(light)
 /*
 const gui = new GUI();
 gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
@@ -249,5 +249,5 @@ function render() {
 
 window.onload = function () {
     connectAudioAPI()
-    
+
 }
