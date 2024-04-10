@@ -1,18 +1,48 @@
 import * as THREE from 'three'
 import { OrbitControls } from '/Libs/three.js/examples/jsm/controls/OrbitControls.js'
 import Stats from '/Libs/three.js/examples/jsm/libs/stats.module.js'
+import { GUI } from '/Libs/three.js/examples/jsm/libs/lil-gui.module.min.js'
+
+
+class ColorGUIHelper {
+    constructor(object, prop) {
+      this.object = object;
+      this.prop = prop;
+    }
+    get value() {
+      return `#${this.object[this.prop].getHexString()}`;
+    }
+    set value(hexString) {
+      this.object[this.prop].set(hexString);
+    }
+  }
+  
 
 const visualiser = document.querySelector("#visualiser");
 
 
 const scene = new THREE.Scene()
 
-const light = new THREE.PointLight(0xffffff, 1000)
-light.position.set(0, 10, 0)
+//const light = new THREE.PointLight(0xffffff, 1000)
+//light.position.set(0, 10, 0)
+
+const color = 0xFFFFFF;
+const intensity = 1;
+globalThis.light = new THREE.DirectionalLight(color, intensity);
+light.position.set(0, 10, 0);
+light.target.position.set(-5, 0, 0);
+scene.add(light);
+scene.add(light.target);
+
 scene.add(light)
-
-
-
+/*
+const gui = new GUI();
+gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
+gui.add(light, 'intensity', 0, 2, 0.01);
+gui.add(light.target.position, 'x', -10, 10);
+gui.add(light.target.position, 'z', -10, 10);
+gui.add(light.target.position, 'y', 0, 10);
+*/
 //const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
 const camera = new THREE.PerspectiveCamera(75, visualiser.clientWidth / visualiser.clientHeight, 0.1, 1000)
 camera.position.x = 0//7
@@ -77,22 +107,23 @@ material.envMap = envTexture
 
 const plane = new THREE.Mesh(new THREE.PlaneGeometry(20, 20, 256, 256), material);
 
-plane.rotateX(-Math.PI / 2)
-scene.add(plane)
+plane.rotateX(-Math.PI / 2);
+scene.add(plane);
 
-window.addEventListener('resize', onWindowResize, false)
+
+window.addEventListener('resize', onWindowResize, false);
 function onWindowResize() {
     //camera.aspect = window.innerWidth / window.innerHeight
-    camera.aspect = visualiser.clientWidth / visualiser.clientHeight
-    camera.updateProjectionMatrix()
-    renderer.setSize(visualiser.clientWidth, visualiser.clientHeight)
-    render()
+    camera.aspect = visualiser.clientWidth / visualiser.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(visualiser.clientWidth, visualiser.clientHeight);
+    render();
 }
 
-let context
-let analyser
-let mediaSource
-let imageData
+let context;
+let analyser;
+let mediaSource;
+let imageData;
 /*
 function getUserMedia(dictionary, callback) {
     try {
