@@ -99,6 +99,7 @@ input[type="range"]::after {
  /*   content: attr(max);*/
     bottom: 100%;
 }
+
 input[type="range"]::before {
     writing-mode: horizontal-tb;
     position: absolute;
@@ -108,17 +109,26 @@ input[type="range"]::before {
 }
 
 input[name="detune"]::after {
-    content: "Tuning 100 %";
+    content: "100 %";
+    margin-left: 20px;
+    margin-bottom: 2px;
 }
+
 input[name="detune"]::before {
     content: "0 %";
+    margin-left: 32px;
+    margin-top: 2px;
 }
 
 input[type="range"][name="gain"]::after {
-    content: "Intensity 100 %";
+    content: "100 %";
+    margin-left: 20px;
+    margin-bottom: 2px;
 }
 input[type="range"][name="gain"]::before {
     content: "0 %";
+    margin-left: 32px;
+    margin-top: 2px;
 }
 
 datalist {

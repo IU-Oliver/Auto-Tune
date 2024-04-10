@@ -7,8 +7,11 @@ const visualiser = document.querySelector("#visualiser");
 
 const scene = new THREE.Scene()
 
-const light = new THREE.AmbientLight()
+const light = new THREE.PointLight(0xffffff, 1000)
+light.position.set(0, 10, 0)
 scene.add(light)
+
+
 
 //const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
 const camera = new THREE.PerspectiveCamera(75, visualiser.clientWidth / visualiser.clientHeight, 0.1, 1000)
@@ -21,6 +24,9 @@ const renderer = new THREE.WebGLRenderer()
 renderer.setSize(visualiser.clientWidth, visualiser.clientHeight)
 visualiser.appendChild(renderer.domElement)
 //document.body.appendChild(renderer.domElement)
+
+
+const controls = new OrbitControls(camera, renderer.domElement)
 
 new OrbitControls(camera, renderer.domElement)
 
@@ -35,17 +41,22 @@ const displacementMap = new THREE.Texture(canvas)
 displacementMap.minFilter = THREE.LinearFilter
 displacementMap.magFilter = THREE.LinearFilter
 
+
+
 const texture = new THREE.Texture(canvas)
 texture.minFilter = THREE.LinearFilter
 texture.magFilter = THREE.LinearFilter
+
 
 //const texture = new THREE.TextureLoader().load('Images/px_25.jpg')
 /*
 const material = new THREE.MeshBasicMaterial();
 */
 const material = new THREE.MeshPhongMaterial({
+
     //wireframe: true,
     //color: new THREE.Color(0x00ff00),
+    
     displacementMap: displacementMap,
     displacementScale: 10,
     map: texture
@@ -95,6 +106,9 @@ function getUserMedia(dictionary, callback) {
     }
 }
 */
+
+
+
 function connectAudioAPI() {
     analyser = document.querySelector("analyser-node").be;
     animate();
