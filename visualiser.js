@@ -249,4 +249,5 @@ function render() {
 
 window.onload = function () {
     connectAudioAPI()
+    
 }
