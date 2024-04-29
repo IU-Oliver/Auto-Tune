@@ -222,7 +222,7 @@ function updateFFT() {
                 b = tdt;
         }
 
-        ctx.fillStyle = 'rgb(' + r + ', ' + g + ', ' + b + ') ';
+        ctx.fillStyle = 'rgba(' + r + ', ' + g + ', ' + b  + ') ';
         ctx.fillRect(x, 510, 2, 2)
     }
 
